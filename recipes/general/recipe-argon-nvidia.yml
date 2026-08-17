@@ -1,0 +1,9 @@
+name: argon-nvidia
+description: "GNOME Desktop image with NVIDIA drivers, based on Universal Blue"
+base-image: ghcr.io/ublue-os/silverblue-nvidia
+image-version: latest
+platforms:
+  - linux/amd64
+modules:
+  - from-file: common/argon-packages.yml
+  - from-file: common/argon-modules.yml

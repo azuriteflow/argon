@@ -1,0 +1,50 @@
+modules:
+  - type: dnf
+    source: ghcr.io/blue-build/modules@sha256:c5ed99f07b15c8d575a4fa64a77e5cd5602b00da4c84379f5675db2ae4757061
+    repos:
+      copr:
+        - scottames/ghostty
+      files:
+        - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    install:
+      packages:
+        - adw-gtk3-theme
+        - bat
+        - brave-origin
+        - fastfetch
+        - fish
+        - fzf
+        - ghostty
+        - gnome-tweaks
+        - zoxide
+    group-install:
+      with-optional: false
+      packages:
+        - virtualization
+      exclude: virt-viewer
+    remove:
+      packages:
+        - epiphany-runtime
+        - fedora-chromium-config
+        - fedora-chromium-config-gnome
+        - fedora-flathub-remote
+        - fedora-third-party
+        - fedora-workstation-repositories
+        - firefox
+        - firefox-langpacks
+        - gnome-disk-utility
+        - gnome-remote-desktop
+        - gnome-shell-extension-background-logo
+        - gnome-system-monitor
+        - gnome-tour
+        - gnome-user-docs
+        - gnome-user-share
+        - httpd
+        - httpd-core
+        - libvncserver
+        - mod_dnssd
+        - mod_http2
+        - mod_lua
+        - ptyxis
+        - totem-video-thumbnailer
+        - yelp

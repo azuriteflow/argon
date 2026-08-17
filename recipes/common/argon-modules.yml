@@ -1,0 +1,23 @@
+modules:
+  - type: systemd
+    source: ghcr.io/blue-build/modules@sha256:c5ed99f07b15c8d575a4fa64a77e5cd5602b00da4c84379f5675db2ae4757061
+    system:
+      enabled:
+        - libvirtd.service
+  - type: brew
+    source: ghcr.io/blue-build/modules@sha256:c5ed99f07b15c8d575a4fa64a77e5cd5602b00da4c84379f5675db2ae4757061
+    brew-analytics: false
+    nofile-limits: false
+    auto-upgrade: false
+    auto-update: false
+  - type: default-flatpaks
+    source: ghcr.io/blue-build/modules@sha256:c5ed99f07b15c8d575a4fa64a77e5cd5602b00da4c84379f5675db2ae4757061
+    configurations:
+      - scope: system
+        repo:
+          title: Flathub (system)
+        install:
+          - com.github.tchx84.Flatseal
+          - org.gnome.Loupe
+  - type: signing
+    source: ghcr.io/blue-build/modules@sha256:c5ed99f07b15c8d575a4fa64a77e5cd5602b00da4c84379f5675db2ae4757061

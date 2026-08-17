@@ -1,0 +1,9 @@
+name: argon
+description: "GNOME desktop image based on Universal Blue"
+base-image: ghcr.io/ublue-os/silverblue-main
+image-version: latest
+platforms:
+  - linux/amd64
+modules:
+  - from-file: common/argon-packages.yml
+  - from-file: common/argon-modules.yml

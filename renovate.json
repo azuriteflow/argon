@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update container image digests in common YAML recipes",
+      "managerFilePatterns": [
+        "/^recipes/common/.*\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "source:\\s*(?<depName>[^\\s@]+)(?:@(?<currentValue>[^\\s@]+))?@(?<currentDigest>sha256:[a-f0-9]{64})"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Update the BlueBuild CLI version used by the reusable workflow",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/build-one\\.yml$/"
+      ],
+      "matchStrings": [
+        "cli_version:\\s*(?<currentValue>v(?<currentVersion>\\d+\\.\\d+\\.\\d+))"
+      ],
+      "depNameTemplate": "blue-build/cli",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+.directory
+.DS_Store
+.idea
+.vscode
+*.kate-swp
+Containerfile
+cosign.key
+cosign.private

@@ -1,0 +1,35 @@
+name: build
+permissions: {}
+on:
+  schedule:
+    - cron: "15 06 */2 * *"
+  push:
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+jobs:
+  silverblue-main:
+    name: Build argon
+    if: github.triggering_actor == 'azuriteflow' || github.event_name == 'schedule' || github.event_name == 'push'
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/build-one.yml
+    with:
+      recipe: general/recipe-argon.yml
+    secrets:
+      SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
+  silverblue-nvidia:
+    name: Build argon with nvidia
+    if: github.triggering_actor == 'azuriteflow' || github.event_name == 'schedule' || github.event_name == 'push'
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/build-one.yml
+    with:
+      recipe: general/recipe-argon-nvidia.yml
+    secrets:
+      SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
